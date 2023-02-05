@@ -3,11 +3,13 @@ import openai
 from dotenv import load_dotenv
 
 
-def paraphrase_sentece(sentence_list):
+def paraphrase_sentence(sentence_list):
   """
   Returns a list of paraphrased sentences
   @param sentence_list: list of sentences to paraphrase
   """
+  paraphrased_sentences = []
+
   load_dotenv()  
   openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -22,6 +24,6 @@ def paraphrase_sentece(sentence_list):
       presence_penalty=0
     )
 
-  print(response.choices[0].text.strip())
+    paraphrased_sentences.append(response.choices[0].text.strip())
 
-paraphrase_sentece(['This is a test sentence'])
+  return paraphrased_sentences
