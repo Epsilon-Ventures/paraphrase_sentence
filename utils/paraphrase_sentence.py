@@ -8,7 +8,7 @@ def paraphrase_sentence(sentence_list):
   Returns a list of paraphrased sentences
   @param sentence_list: list of sentences to paraphrase
   """
-  paraphrased_sentences = []
+  question_paraphrase = []
 
   load_dotenv()  
   openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -16,14 +16,14 @@ def paraphrase_sentence(sentence_list):
   for sentence in sentence_list:
     response = openai.Completion.create(
       model="text-davinci-003",
-      prompt=f"Paraphrase the sentence: {sentence}",
-      temperature=0.7,
+      prompt=f"Paraphrase the question, \"{sentence}\"",
+      temperature=0.75,
       max_tokens=256,
       top_p=1,
       frequency_penalty=0,
       presence_penalty=0
     )
 
-    paraphrased_sentences.append(response.choices[0].text.strip())
+    question_paraphrase.append([sentence, response.choices[0].text.strip()])
 
-  return paraphrased_sentences
+  return question_paraphrase
