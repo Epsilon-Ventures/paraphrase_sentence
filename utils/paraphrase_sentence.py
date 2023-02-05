@@ -1,7 +1,7 @@
 import os
 import openai
 from dotenv import load_dotenv
-
+import time
 
 def paraphrase_sentence(sentence_list):
   """
@@ -25,5 +25,6 @@ def paraphrase_sentence(sentence_list):
     )
 
     question_paraphrase.append([sentence, response.choices[0].text.strip()])
+    time.sleep(1)
 
   return question_paraphrase
