@@ -17,7 +17,7 @@ def paraphrase_sentence(sentence_list):
     response = openai.Completion.create(
       model="text-davinci-003",
       prompt=f"Paraphrase the question, \"{sentence}\"",
-      temperature=0.75,
+      temperature=0.15,
       max_tokens=256,
       top_p=1,
       frequency_penalty=0,
